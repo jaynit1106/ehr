@@ -17,6 +17,7 @@ public class AccountsPojo {
     private Double cost;
     private String status;
     private ZonedDateTime billing_date;
+    private int file_id;
 
     @PrePersist
     public void timestamp(){

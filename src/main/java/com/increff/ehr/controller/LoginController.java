@@ -1,8 +1,14 @@
 package com.increff.ehr.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -32,6 +38,7 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @Api
+@CrossOrigin(origins = "http://localhost:4200")
 public class LoginController {
 
 	@Autowired
@@ -68,9 +75,9 @@ public class LoginController {
 		return new ModelAndView("redirect:/site/logout");
 	}
 
-	@ApiOperation(value = "add drug")
+	@ApiOperation(value = "add user")
 	@PostMapping(path = "/api/users")
-	public void addUsers(@RequestBody UserForm userForm) throws ApiException {
+	public void addUsers(@RequestBody UserForm userForm) throws Exception {
 		UserPojo userPojo = ConvertUtil.objectMapper(userForm,UserPojo.class);
 		service.add(userPojo);
 	}
