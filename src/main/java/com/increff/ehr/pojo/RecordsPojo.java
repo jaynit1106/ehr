@@ -16,7 +16,7 @@ public class RecordsPojo {
     @Column(nullable = false)
     private Integer user_id;
 
-    @Column(nullable = false)
+    @Column(nullable = false,length = 50000)
     private String pdf;
 
 }

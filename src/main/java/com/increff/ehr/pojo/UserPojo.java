@@ -1,9 +1,6 @@
 package com.increff.ehr.pojo;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class UserPojo {
@@ -12,6 +9,7 @@ public class UserPojo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String email;
+	@Column(length = 10000)
 	private String password;
 	private String role;
 

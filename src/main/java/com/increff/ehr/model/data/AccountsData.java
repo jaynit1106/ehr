@@ -11,4 +11,6 @@ import java.time.ZonedDateTime;
 public class AccountsData extends AccountsForm {
 
     private ZonedDateTime billingDate;
+
+    private String name;
 }

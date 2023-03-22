@@ -20,6 +20,7 @@ import java.util.List;
 
 @RestController
 @Api
+@CrossOrigin(origins = "http://localhost:4200")
 public class AccountsController {
     @Autowired
     private AccountsService accountsService;
@@ -35,7 +36,7 @@ public class AccountsController {
     }
     @ApiOperation(value = "get all accounts")
     @GetMapping(path = "/api/accounts")
-    public List<AccountsData> getAllAccounts(){
+    public List<AccountsData> getAllAccounts() throws ApiException {
 
         List<AccountsPojo> accountsPojoList = accountsService.getAll();
         List<AccountsData> accountsDataList = new ArrayList<>();
@@ -45,8 +46,9 @@ public class AccountsController {
             accountsData.setBillingDate(accountsPojo.getBilling_date());
             accountsData.setCost(accountsPojo.getCost());
             accountsData.setStatus(accountsPojo.getStatus());
+            String name = userService.getById(accountsPojo.getUser_id()).getEmail();
             accountsData.setUser_id(accountsPojo.getUser_id());
-
+            accountsData.setName(name);
             accountsDataList.add(accountsData);
         }
 
