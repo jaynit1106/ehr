@@ -23,6 +23,14 @@ public class DrugsService {
         drugsDao.insert(drugsPojo);
     }
 
+    public void update(int id,DrugsPojo drugsPojo){
+        DrugsPojo expojo = drugsDao.getById(id,DrugsPojo.class);
+        expojo.setDose(drugsPojo.getDose());
+        expojo.setMRP(drugsPojo.getMRP());
+        expojo.setName(drugsPojo.getName());
+        expojo.setSupplier(drugsPojo.getSupplier());
+    }
+
     public List<DrugsPojo> getAll(){
         return drugsDao.getAll(DrugsPojo.class);
     }

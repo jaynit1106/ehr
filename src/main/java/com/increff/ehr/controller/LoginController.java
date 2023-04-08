@@ -47,13 +47,14 @@ public class LoginController {
 	private InfoData info;
 	
 	@ApiOperation(value = "Logs in a user")
-	@RequestMapping(path = "/session/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-	public ModelAndView login(HttpServletRequest req, LoginForm f) throws ApiException {
+	@RequestMapping(path = "/session/login", method = RequestMethod.POST)
+	public UserForm login(HttpServletRequest req, @RequestBody LoginForm f) throws ApiException {
+		System.out.println(f.getEmail());
 		UserPojo p = service.get(f.getEmail());
+		if(p==null) System.out.println("hi"+f.getEmail());
 		boolean authenticated = (p != null && Objects.equals(p.getPassword(), f.getPassword()));
 		if (!authenticated) {
-			info.setMessage("Invalid username or password");
-			return new ModelAndView("redirect:/site/login");
+			throw new ApiException("Invalid Username and Password");
 		}
 
 		// Create authentication object
@@ -64,8 +65,9 @@ public class LoginController {
 		SecurityUtil.createContext(session);
 		// Attach Authentication object to the Security Context
 		SecurityUtil.setAuthentication(authentication);
-
-		return new ModelAndView("redirect:/ui/home");
+		UserForm userForm = new UserForm();
+		userForm.setRole(p.getRole());
+		return userForm;
 
 	}
 

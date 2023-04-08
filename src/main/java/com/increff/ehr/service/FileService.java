@@ -22,6 +22,9 @@ public class FileService {
     public List<FilePojo> getAll(){
         return fileDao.getAll(FilePojo.class);
     }
+    public FilePojo getById(int id){
+        return fileDao.getById(id, FilePojo.class);
+    }
 
     public List<FilePojo> getAllByUser(int user_id){return fileDao.getAllByUser(user_id);}
 

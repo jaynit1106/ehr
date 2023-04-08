@@ -22,6 +22,7 @@ import java.util.List;
 
 @RestController
 @Api
+@CrossOrigin(origins = "http://localhost:4200")
 public class FileController {
     @Autowired
     private FileService fileService;
@@ -38,6 +39,11 @@ public class FileController {
         fileService.insert(filePojo);
     }
 
+    @GetMapping(path = "/api/files/user/{id}")
+    public FilePojo getById(@PathVariable int id){
+        return fileService.getById(id);
+    }
+
     @ApiOperation(value = "get all files")
     @GetMapping(path = "/api/files")
     public List<FileData> getAllFiles() throws ApiException {
@@ -50,7 +56,9 @@ public class FileController {
             fileData = ConvertUtil.objectMapper(FilePojo, FileData.class);
             fileData.setUser_name(userService.getById(FilePojo.getUser_id()).getEmail());
             fileData.setDoctor_name(userService.getById(FilePojo.getDoctor_id()).getEmail());
+            fileData.setId(FilePojo.getId());
             fielDataList.add(fileData);
+
         }
         
         return fielDataList;

@@ -8,16 +8,14 @@ import com.increff.ehr.util.ConvertUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Api
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class DrugsController {
 
     @Autowired
@@ -29,6 +27,14 @@ public class DrugsController {
         DrugsPojo drugsPojo = ConvertUtil.objectMapper(drugsForm,DrugsPojo.class);
         drugsService.addDrugs(drugsPojo);
     }
+
+    @ApiOperation(value = "update drug")
+    @PutMapping(path = "/api/drugs/{id}")
+    public void addDrugs(@PathVariable int id,@RequestBody DrugsForm drugsForm){
+        DrugsPojo drugsPojo = ConvertUtil.objectMapper(drugsForm,DrugsPojo.class);
+        drugsService.update(id,drugsPojo);
+    }
+
     @ApiOperation(value = "get all drugs")
     @GetMapping(path = "/api/drugs")
     public List<DrugsData> getAllDrugs(){

@@ -21,6 +21,11 @@ public class AccountsService {
         accountsDao.insert(accountsPojo);
     }
 
+    public void update(int id){
+        AccountsPojo ex = accountsDao.getById(id,AccountsPojo.class);
+        ex.setStatus("paid");
+    }
+
     public List<AccountsPojo> getAll(){
         return accountsDao.getAll(AccountsPojo.class);
     }

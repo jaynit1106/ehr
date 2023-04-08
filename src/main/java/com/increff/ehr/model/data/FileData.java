@@ -10,5 +10,5 @@ import java.time.ZonedDateTime;
 @Getter
 @Setter
 public class FileData extends FileForm{
-
+    int id;
 }

@@ -34,6 +34,13 @@ public class AccountsController {
         AccountsPojo accountsPojo = ConvertUtil.objectMapper(accountsForm, AccountsPojo.class);
         accountsService.addAccounts(accountsPojo);
     }
+
+    @ApiOperation(value = "add accounts")
+    @PutMapping(path = "/api/accounts/{id}")
+    public void updateAccounts(@PathVariable int id){
+        accountsService.update(id);
+    }
+
     @ApiOperation(value = "get all accounts")
     @GetMapping(path = "/api/accounts")
     public List<AccountsData> getAllAccounts() throws ApiException {
