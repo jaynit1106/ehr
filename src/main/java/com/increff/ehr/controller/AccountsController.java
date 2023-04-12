@@ -43,23 +43,23 @@ public class AccountsController {
 
     @ApiOperation(value = "get all accounts")
     @GetMapping(path = "/api/accounts")
-    public List<AccountsData> getAllAccounts() throws ApiException {
+    public List<AccountsPojo> getAllAccounts() throws ApiException {
 
-        List<AccountsPojo> accountsPojoList = accountsService.getAll();
-        List<AccountsData> accountsDataList = new ArrayList<>();
+//        List<AccountsPojo> accountsPojoList = accountsService.getAll();
+//        List<AccountsData> accountsDataList = new ArrayList<>();
+//
+//        for(AccountsPojo accountsPojo : accountsPojoList){
+//            AccountsData accountsData = new AccountsData();
+//            accountsData.setBillingDate(accountsPojo.getBilling_date());
+//            accountsData.setCost(accountsPojo.getCost());
+//            accountsData.setStatus(accountsPojo.getStatus());
+////            String name = userService.getById(accountsPojo.getUser_id()).getEmail();
+//            accountsData.setUser_id(accountsPojo.getUser_id());
+////            accountsData.setName(name);
+//            accountsDataList.add(accountsData);
+//        }
 
-        for(AccountsPojo accountsPojo : accountsPojoList){
-            AccountsData accountsData = new AccountsData();
-            accountsData.setBillingDate(accountsPojo.getBilling_date());
-            accountsData.setCost(accountsPojo.getCost());
-            accountsData.setStatus(accountsPojo.getStatus());
-            String name = userService.getById(accountsPojo.getUser_id()).getEmail();
-            accountsData.setUser_id(accountsPojo.getUser_id());
-            accountsData.setName(name);
-            accountsDataList.add(accountsData);
-        }
-
-        return accountsDataList;
+        return accountsService.getAll();
     }
 
     @ApiOperation(value = "get all accounts by user")
@@ -71,7 +71,7 @@ public class AccountsController {
         List<AccountsData> accountsDataList = new ArrayList<>();
         for(AccountsPojo accountsPojo : accountsPojoList){
             AccountsData accountsData = new AccountsData();
-            accountsData.setBillingDate(accountsPojo.getBilling_date());
+            accountsData.setBillingDate(accountsPojo.getBillingDate());
             accountsData.setCost(accountsPojo.getCost());
             accountsData.setStatus(accountsPojo.getStatus());
             accountsData.setUser_id(accountsPojo.getUser_id());

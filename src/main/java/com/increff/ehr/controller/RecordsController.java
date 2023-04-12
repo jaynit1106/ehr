@@ -51,4 +51,14 @@ public class RecordsController {
     public void updateRecord(@PathVariable int id,@RequestBody RecordsPojo recordsPojo) throws NoSuchPaddingException, IllegalBlockSizeException, UnsupportedEncodingException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
         recordsService.update(id,recordsPojo);
     }
+
+    @ApiOperation(value = "get all records")
+    @GetMapping(path = "/api/records/file/{id}")
+    public List<RecordsPojo> getByFileId(@PathVariable int id) throws ApiException, NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
+        return recordsService.getAllByFile(id);
+    }
+
+
+
+
 }

@@ -13,6 +13,8 @@ public class FileDao extends AbstractDao{
     private static String GET_ALL_BY_USER = "select p from FilePojo p where user_id=:user_id";
     private static String GET_ALL_BY_DOCTOR = "select p from FilePojo p where doctor_id=:doctor_id";
 
+    private static String GET_ALL_BY_STATUS = "select p from FilePojo p where status=:status";
+
     public List<FilePojo> getAllByUser(int user_id){
         TypedQuery<FilePojo> query = getQuery(GET_ALL_BY_USER,FilePojo.class);
         query.setParameter("user_id",user_id);
@@ -22,6 +24,12 @@ public class FileDao extends AbstractDao{
     public List<FilePojo> getAllByDoctor(int doctor_id){
         TypedQuery<FilePojo> query = getQuery(GET_ALL_BY_DOCTOR,FilePojo.class);
         query.setParameter("doctor_id",doctor_id);
+        return query.getResultList();
+    }
+
+    public List<FilePojo> getAllByStatus(String status){
+        TypedQuery<FilePojo> query = getQuery(GET_ALL_BY_STATUS,FilePojo.class);
+        query.setParameter("status",status);
         return query.getResultList();
     }
 }

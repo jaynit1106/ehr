@@ -29,4 +29,11 @@ public class FileService {
     public List<FilePojo> getAllByUser(int user_id){return fileDao.getAllByUser(user_id);}
 
     public List<FilePojo> getAllByDoctor(int doctor_id){return fileDao.getAllByDoctor(doctor_id);}
+
+    public List<FilePojo> getAllByStatus(String status){return fileDao.getAllByStatus(status);}
+
+    public  void updateStatus(String status,int file_id){
+        FilePojo filePojo = fileDao.getById(file_id,FilePojo.class);
+        filePojo.setStatus(status);
+    }
 }

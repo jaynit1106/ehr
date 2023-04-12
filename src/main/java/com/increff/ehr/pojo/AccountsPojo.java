@@ -13,15 +13,15 @@ public class AccountsPojo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer user_id;
+    private String user_id;
     private Double cost;
     private String status;
-    private ZonedDateTime billing_date;
+    private ZonedDateTime billingDate;
     private int file_id;
 
     @PrePersist
     public void timestamp(){
-        this.billing_date = ZonedDateTime.now();
+        this.billingDate = ZonedDateTime.now();
     }
 
 }

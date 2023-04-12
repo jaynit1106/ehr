@@ -16,6 +16,8 @@ public class RecordsPojo {
     @Column(nullable = false)
     private String user;
 
+    private int file_id;
+
     private  String test;
 
     @Column(length = 10000)

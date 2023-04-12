@@ -26,7 +26,7 @@ public class BlowfishService {
         cipher.init(Cipher.ENCRYPT_MODE, KS);
         String encryptedtext = Base64.getEncoder().
                 encodeToString(cipher.doFinal(password.getBytes("UTF-8")));
-//        System.out.println(encryptedtext);
+        System.out.println(encryptedtext.length());
         return encryptedtext;
 
     }

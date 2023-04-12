@@ -95,4 +95,16 @@ public class FileController {
         }
         return fileDataList;
     }
+
+    @ApiOperation("get all files by status")
+    @GetMapping("api/files/status/{value}")
+    public List<FilePojo> getByStatus(@PathVariable String value){
+        return fileService.getAllByStatus(value);
+    }
+
+    @ApiOperation("update status")
+    @PostMapping("api/files/status/{id}")
+    public void updateStatus(@PathVariable int id,@RequestBody FileForm fileForm){
+        fileService.updateStatus(fileForm.getStatus(),id);
+    }
 }

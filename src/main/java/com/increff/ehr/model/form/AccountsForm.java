@@ -8,7 +8,7 @@ import java.time.ZonedDateTime;
 
 @Getter@Setter
 public class AccountsForm {
-    private Integer user_id;
+    private String user_id;
     private Double cost;
     private String status;
     private int file_id;
