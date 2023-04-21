@@ -20,7 +20,6 @@ public class RecordsPojo {
 
     private  String test;
 
-    @Column(length = 10000)
     private String pdf;
 
 }
